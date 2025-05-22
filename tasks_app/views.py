@@ -1,3 +1,4 @@
+import logging
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, filters
 from rest_framework.exceptions import ValidationError
@@ -5,7 +6,7 @@ from rest_framework.pagination import LimitOffsetPagination
 
 from .models import Task
 from .serializers import TaskSerializer
-import logging
+
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +14,11 @@ class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['status', 'author__id', 'assignee__id', 'board__id', 'sprint__id']
+    search_fields = ['status',
+                     'author__id',
+                     'assignee__id',
+                     'board__id',
+                     'sprint__id']
     pagination_class = LimitOffsetPagination
 
     def perform_create(self, serializer):

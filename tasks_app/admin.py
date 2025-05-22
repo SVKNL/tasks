@@ -7,7 +7,3 @@ admin.site.register(Group)
 admin.site.register(Sprint)
 admin.site.register(Board)
 admin.site.register(Column)
-
-
-
-
